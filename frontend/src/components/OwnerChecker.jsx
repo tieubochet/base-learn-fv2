@@ -81,14 +81,21 @@ export default function OwnerChecker({ getSigner, setDeployStatus }) {
         </div>
       )}
 
-      <a
-        href="https://guild.xyz/base/base-learn"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-lg text-cyan-300 underline hover:text-cyan-200"
-      >
-        🥳 Claim Base Learn role: https://guild.xyz/base/base-learn 🥳
-      </a>
+      <div className="mt-4 text-center">
+        <a
+          href="https://guild.xyz/base/base-learn"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-3 text-lg font-semibold text-cyan-300 hover:text-cyan-200 leading-tight underline underline-offset-4 decoration-cyan-400/40 hover:decoration-cyan-200"
+        >
+          <span className="text-xl">🥳</span>
+          <span className="px-1">Base Learn Role on Guild.xyz</span>
+          <span className="text-xl">🥳</span>
+        </a>
+        <div className="mt-1 text-sm text-gray-400">
+          (It may take up to 1 hour for your Guild role to update!)
+        </div>
+      </div>
     </div>
   );
 }
