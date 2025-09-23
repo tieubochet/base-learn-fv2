@@ -12,6 +12,8 @@ This project is designed for learning and developing smart contracts with the fo
 - **Modern Frontend**: React application with Tailwind CSS and Web3 wallet connectivity
 - **Multi-Contract Support**: Various contract types including ERC20, ERC721, and custom implementations
 
+![Demo](frontend/public/demo.png)
+
 ## 📁 Project Structure
 
 ```
