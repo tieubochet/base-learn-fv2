@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 import "@rainbow-me/rainbowkit/styles.css";
 import {
@@ -38,6 +40,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <WagmiConfig config={config}>
         <RainbowKitProvider chains={[baseSepolia]}>
           <App />
+          <Analytics />
+          <SpeedInsights />
         </RainbowKitProvider>
       </WagmiConfig>
     </QueryClientProvider>

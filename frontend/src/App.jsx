@@ -1,7 +1,14 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import ContractDeployer from "./components/ContractDeployer";
+import { useEffect } from "react";
+import { trackPageView } from "./utils/analytics";
 
 export default function App() {
+  useEffect(() => {
+    // Track page view when app loads
+    trackPageView('Main App', navigator.userAgent);
+  }, []);
+
   return (
     <div className="w-screen min-h-screen flex flex-col bg-gradient-to-br from-slate-900 via-gray-950 to-black text-white">
       {/* Header */}
