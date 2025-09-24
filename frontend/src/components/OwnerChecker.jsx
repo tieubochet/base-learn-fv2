@@ -59,43 +59,49 @@ export default function OwnerChecker({ getSigner, setDeployStatus }) {
     }
   };
 
-  return (
-    <div className="mb-6 flex flex-col items-center gap-2">
-      <button
-        onClick={checkOwners}
-        disabled={checking}
-        className="bg-gradient-to-r from-purple-500 to-pink-600 
-                   hover:from-purple-400 hover:to-pink-500 
-                   text-white font-bold px-6 py-3 rounded-xl shadow-lg 
-                   disabled:opacity-60"
-      >
-        {checking ? "⏳ Checking..." : "Check My Base Learn Pins NFT"}
+const btnClass =
+  "w-full bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-400 " +
+  "hover:from-blue-400 hover:via-sky-400 hover:to-cyan-300 " +
+  "text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg " +
+  "transition transform hover:scale-105 focus:outline-none focus:ring-2 " +
+  "focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-slate-900 " +
+  "disabled:opacity-50 animate-border-glow";
+
+return (
+  <div className="mb-6 flex flex-col items-center gap-4">
+    {/* Nút Check */}
+    <div className="flex w-full max-w-md">
+      <button onClick={checkOwners} disabled={checking} className={btnClass}>
+        {checking ? "⏳ Checking..." : "Check My NFTs"}
       </button>
+    </div>
 
-      {summary && (
-        <div className="text-white text-sm bg-slate-800/70 rounded-lg px-4 py-2 mt-1">
-          <div>
-            Base Learn Pins: <b>{summary.ownedCount}</b> / <b>{summary.totalCount}</b>
-          </div>
-          {/* <div className="text-xs text-slate-400">for {summary.address}</div> */}
-        </div>
-      )}
+    {/* Summary */}
+    {summary && (
+      <div className="text-white text-sm bg-slate-800/70 rounded-lg px-4 py-2 mt-1 w-full max-w-md text-center">
+        Base Learn Pins: <b>{summary.ownedCount}</b> / <b>{summary.totalCount}</b>
+      </div>
+    )}
 
-      <div className="mt-4 text-center">
-        <a
-          href="https://guild.xyz/base/base-learn"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 text-lg font-semibold text-cyan-300 hover:text-cyan-200 leading-tight underline underline-offset-4 decoration-cyan-400/40 hover:decoration-cyan-200"
-        >
-          <span className="text-xl">🥳</span>
-          <span className="px-1">Base Learn Role on Guild.xyz</span>
-          <span className="text-xl">🥳</span>
-        </a>
-        <div className="mt-1 text-sm text-gray-400">
-          (It may take up to 1 hour for your Guild role to update!)
-        </div>
+    {/* Link Guild.xyz */}
+    <div className="mt-4 text-center">
+      <a
+        href="https://guild.xyz/base/base-learn"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-3 text-lg font-semibold text-cyan-300 hover:text-cyan-200 leading-tight decoration-cyan-400/40 hover:decoration-cyan-200"
+      >
+        <span className="text-xl">🥳</span>
+        <span className="px-1">Base Learn Role on Guild.xyz</span>
+        <span className="text-xl">🥳</span>
+      </a>
+      <div className="mt-1 text-sm text-gray-400">
+        (It may take up to 1 hour for your Guild role to update!)
       </div>
     </div>
-  );
+  </div>
+);
+
+
+
 }

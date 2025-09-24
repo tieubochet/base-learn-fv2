@@ -38,7 +38,7 @@ export default function ContractCard({
             href={explorerLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="underline decoration-dotted hover:opacity-90"
+            className="decoration-dotted hover:opacity-90"
             title="Open on BaseScan (readContract)"
           >
             {contract.name}
