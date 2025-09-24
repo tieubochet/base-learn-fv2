@@ -96,7 +96,7 @@ return (
         <span className="text-xl">🥳</span>
       </a>
       <div className="mt-1 text-sm text-gray-400">
-        (It may take up to 1 hour for your Guild role to update!)
+        (It may take up to 1 day for your Guild role to update!)
       </div>
     </div>
   </div>
