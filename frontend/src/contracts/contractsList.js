@@ -16,17 +16,17 @@ import UnburnableToken from "../contracts/UnburnableToken.json";
 import WeightedVoting from "../contracts/WeightedVoting.json";
 import HaikuNFT from "../contracts/HaikuNFT.json";
 
-// =========================================================================
-// === SỬA LỖI Ở ĐÂY: Sửa lại đường dẫn import cho đúng ===
-// Đường dẫn phải là '../contracts/' giống như các file khác
+// Import file JSON chứa mảng ABI
 import DailyStreakABI from '../contracts/DailyStreak.json';
-// =========================================================================
 
 
 export const contracts = {
   dailyStreak: {
-    // Bây giờ DailyStreakABI.abi sẽ được đọc chính xác
-    abi: DailyStreakABI.abi,
+    // =========================================================================
+    // === SỬA LỖI Ở ĐÂY: Gán trực tiếp mảng ABI vào ===
+    // Vì file JSON của bạn là một mảng, nên ta gán thẳng DailyStreakABI
+    abi: DailyStreakABI,
+    // =========================================================================
     
     address: {
       8453: '0x899bffa2af4504eec57b8c8f12d8150c4d792830', // Base Mainnet
