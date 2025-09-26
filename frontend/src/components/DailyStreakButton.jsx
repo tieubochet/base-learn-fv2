@@ -2,21 +2,29 @@ import React, { useState } from "react";
 import { ethers } from "ethers";
 import { contracts } from "../contracts/contractsList";
 
-const DailyStreakButton = ({ signer }) => {
+const DailyStreakButton = ({ provider }) => {
   const [loading, setLoading] = useState(false);
   const [streak, setStreak] = useState(null);
 
   const handleCheckIn = async () => {
     try {
       setLoading(true);
+
+      // Lấy signer từ provider
+      const signer = await provider.getSigner();
+
+      // Khởi tạo contract với signer
       const contract = new ethers.Contract(
         contracts.dailyStreak.address,
         contracts.dailyStreak.abi,
         signer
       );
+
+      // Gửi tx
       const tx = await contract.checkIn();
       await tx.wait();
 
+      // Đọc lại streak
       const streakValue = await contract.getStreak(await signer.getAddress());
       setStreak(streakValue.toString());
     } catch (err) {
@@ -37,7 +45,7 @@ const DailyStreakButton = ({ signer }) => {
       </button>
       {streak && (
         <p className="mt-2 text-sm text-gray-600">
-          Your streak: <span className="font-bold">{streak} 🔥</span>
+          Streak: <span className="font-bold">{streak} 🔥</span>
         </p>
       )}
     </div>
