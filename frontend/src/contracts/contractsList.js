@@ -15,11 +15,15 @@ import WeightedVoting from "../contracts/WeightedVoting.json";
 import HaikuNFT from "../contracts/HaikuNFT.json";
 import DailyStreakABI from './DailyStreak.json'
 
+
 export const contracts = {
   dailyStreak: {
-    abi: DailyStreakABI,
+    abi: [DailyStreakABI],
+    // 'address' PHẢI LÀ MỘT ĐỐI TƯỢNG (OBJECT)
+    // với các key là chainId (dưới dạng số hoặc chuỗi đều được)
     address: {
-      8453:0x899bffa2af4504eec57b8c8f12d8150c4d792830,
+      8453: '0x899bffa2af4504eec57b8c8f12d8150c4d792830',   // <-- THAY ĐỊA CHỈ MAINNET
+      84532: '', // <-- THAY ĐỊA CHỈ SEPOLIA
     },
   },
 };
