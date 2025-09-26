@@ -53,7 +53,7 @@ const DailyStreakButton = () => {
         onClick={handleCheckIn}
         disabled={!isConnected || isPending || !contractAddress}
         // == THAY ĐỔI CLASSNAME Ở ĐÂY ==
-        className="px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg shadow-lg shadow-cyan-500/50 transform transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 disabled:bg-gray-600 disabled:shadow-none disabled:cursor-not-allowed disabled:bg-gradient-to-r"
+        className="text-sm font-semibold text-white bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg shadow-lg shadow-cyan-500/50 transform transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 disabled:bg-gray-600 disabled:shadow-none disabled:cursor-not-allowed disabled:bg-gradient-to-r"
       >
         {isPending ? "Confirming..." : "Streak"}
       </button>
