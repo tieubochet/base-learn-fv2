@@ -1,61 +1,88 @@
-import React, { useEffect } from "react";
-// 1. Import các hook cần thiết từ wagmi
-import { useAccount, useReadContract, useWriteContract } from "wagmi";
+import React, { useEffect, useMemo } from "react";
+// 1. Import thêm hook `useChainId` và `useSwitchChain`
+import { useAccount, useReadContract, useWriteContract, useChainId, useSwitchChain } from "wagmi";
 import { contracts } from "../contracts/contractsList";
+import { base, baseSepolia } from 'wagmi/chains';
 
-// 2. Xóa prop "provider" vì wagmi sẽ quản lý kết nối tự động
 const DailyStreakButton = () => {
-  // 3. Lấy thông tin tài khoản và trạng thái kết nối
   const { address, isConnected } = useAccount();
+  const chainId = useChainId(); // Lấy chainId của mạng hiện tại
 
-  // 4. Hook để GỌI HÀM "checkIn" (ghi vào blockchain)
+  // 2. Tự động chọn địa chỉ contract dựa vào chainId
+  const contractAddress = useMemo(() => {
+    return contracts.dailyStreak.address[chainId];
+  }, [chainId]);
+
   const { data: hash, isPending, error, writeContract } = useWriteContract();
+  const { switchChain } = useSwitchChain(); // Hook để yêu cầu chuyển mạng
 
-  // 5. Hook để ĐỌC DỮ LIỆU "getStreak" (đọc từ blockchain)
-  // Nó sẽ tự động cập nhật khi 'address' thay đổi
   const { data: streak, isLoading: isStreakLoading, refetch } = useReadContract({
-    address: contracts.dailyStreak.address,
+    // 3. Sử dụng địa chỉ contract đã được chọn tự động
+    address: contractAddress,
     abi: contracts.dailyStreak.abi,
     functionName: 'getStreak',
-    args: [address], // Truyền địa chỉ người dùng vào làm tham số
-    // Chỉ chạy hook này khi người dùng đã kết nối ví
-    enabled: isConnected && !!address,
+    args: [address],
+    // Chỉ chạy hook này khi đã kết nối và có địa chỉ contract hợp lệ
+    enabled: isConnected && !!address && !!contractAddress,
   });
 
-  // Hàm xử lý khi nhấn nút
   const handleCheckIn = () => {
-    // wagmi sẽ tự động lấy signer và xử lý giao dịch
+    // Chỉ gọi khi có địa chỉ contract hợp lệ
+    if (!contractAddress) return;
+
     writeContract({
-      address: contracts.dailyStreak.address,
+      address: contractAddress,
       abi: contracts.dailyStreak.abi,
       functionName: 'checkIn',
-      args: [], // Hàm checkIn không cần tham số
+      args: [],
     });
   };
 
-  // 6. Tự động đọc lại streak sau khi check-in thành công
   useEffect(() => {
-    // Nếu có hash (giao dịch thành công)
     if (hash) {
       console.log('Check-in successful, transaction hash:', hash);
-      // Yêu cầu hook useReadContract chạy lại để lấy giá trị streak mới nhất
       refetch();
     }
   }, [hash, refetch]);
 
+  // 4. Xử lý trường hợp người dùng ở sai mạng
+  if (isConnected && !contractAddress) {
+    return (
+      <div className="mt-2 p-4 border border-yellow-400 bg-yellow-50 rounded-lg">
+        <p className="text-yellow-700">
+          Network not supported. Please switch to a supported network.
+        </p>
+        <div className="mt-2 space-x-2">
+            {/* Nút chuyển sang Base Mainnet */}
+            <button
+                onClick={() => switchChain({ chainId: base.id })}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            >
+                Switch to Base Mainnet
+            </button>
+            {/* Nút chuyển sang Base Sepolia */}
+            <button
+                onClick={() => switchChain({ chainId: baseSepolia.id })}
+                className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
+            >
+                Switch to Base Sepolia
+            </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="mt-2">
       <button
         onClick={handleCheckIn}
-        // Vô hiệu hóa nút nếu ví chưa kết nối HOẶC đang có giao dịch chờ xử lý
-        disabled={!isConnected || isPending}
+        // Vô hiệu hóa nếu ví chưa kết nối, đang chờ xử lý, hoặc ở sai mạng
+        disabled={!isConnected || isPending || !contractAddress}
         className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
       >
         {isPending ? "Checking in..." : "Daily Streak"}
       </button>
 
-      {/* Hiển thị streak lấy từ hook useReadContract */}
       {isStreakLoading && <p className="mt-2 text-sm text-gray-600">Loading streak...</p>}
       {streak !== null && streak !== undefined && (
         <p className="mt-2 text-sm text-gray-600">
@@ -63,7 +90,6 @@ const DailyStreakButton = () => {
         </p>
       )}
 
-      {/* (Tùy chọn) Hiển thị thông báo lỗi để debug */}
       {error && (
         <p className="mt-2 text-sm text-red-500">
           Error: {error.shortMessage || error.message}

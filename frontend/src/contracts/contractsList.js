@@ -17,10 +17,12 @@ import DailyStreakABI from './DailyStreak.json'
 
 export const contracts = {
   dailyStreak: {
-    address: "0x899bffa2af4504eec57b8c8f12d8150c4d792830",
     abi: DailyStreakABI,
-  }
-}
+    address: {
+      8453:0x899bffa2af4504eec57b8c8f12d8150c4d792830,
+    },
+  },
+};
 
 // ✅ Danh sách phê duyệt cho FavoriteRecords
 const approvedRecords = [
