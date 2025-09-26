@@ -59,7 +59,7 @@ const DailyStreakButton = () => {
         {isPending ? "Confirming in wallet..." : "Daily Streak Check-in"}
       </button>
 
-      {isStreakLoading && <p className="mt-2 text-sm text-gray-600">Loading streak...</p>}
+      {isStreakLoading}
 
       {streak !== null && streak !== undefined && (
         <p className="mt-2 text-sm text-gray-600">
