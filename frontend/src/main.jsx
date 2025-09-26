@@ -18,7 +18,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const projectId = import.meta.env.VITE_WALLETCONNECT_PROJECT_ID;
 
 const { connectors } = getDefaultWallets({
-  appName: "Hardhat DApp",
+  appName: "Base Sepolia Deployer App",
   projectId,
   chains: [baseSepolia],
 });
