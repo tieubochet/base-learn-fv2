@@ -54,12 +54,11 @@ const DailyStreakButton = () => {
         onClick={handleCheckIn}
         disabled={!isConnected || isPending || !contractAddress}
         // == THAY ĐỔI CLASSNAME Ở ĐÂY ==
-        className="w-full bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-400 hover:from-blue-400 hover:via-sky-400 hover:to-cyan-300 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg transition transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50 animate-border-glow"
+        className="w-full bg-gradient-to-r from-blue-500 via-sky-500 to-cyan-400 hover:from-blue-400 hover:via-sky-400 hover:to-cyan-300 text-white font-bold px-5 py-2.5 rounded-xl text-lg shadow-lg transition transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50 animate-border-glow"
       >
         {isPending ? "Confirming in wallet..." : "Daily Streak Check-in"}
       </button>
 
-      {isStreakLoading}
 
       {streak !== null && streak !== undefined && (
         <p className="mt-2 text-sm text-gray-600">
