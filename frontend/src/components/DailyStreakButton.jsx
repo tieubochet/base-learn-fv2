@@ -48,7 +48,7 @@ const DailyStreakButton = () => {
   }
 
   return (
-    <div className="mt-2">
+    <div>
       <button
         onClick={handleCheckIn}
         disabled={!isConnected || isPending || !contractAddress}
