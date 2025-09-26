@@ -13,6 +13,14 @@ import AddressBookFactory from "../contracts/10_AddressBookFactory.json";
 import UnburnableToken from "../contracts/UnburnableToken.json";
 import WeightedVoting from "../contracts/WeightedVoting.json";
 import HaikuNFT from "../contracts/HaikuNFT.json";
+import DailyStreakABI from './DailyStreak.json'
+
+export const contracts = {
+  dailyStreak: {
+    address: "0x899bffa2af4504eec57b8c8f12d8150c4d792830",
+    abi: DailyStreakABI,
+  }
+}
 
 // ✅ Danh sách phê duyệt cho FavoriteRecords
 const approvedRecords = [

@@ -1,5 +1,6 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import ContractDeployer from "./components/ContractDeployer";
+import DailyStreakButton from "./components/DailyStreakButton";
 import { useEffect } from "react";
 import { trackPageView } from "./utils/analytics";
 
@@ -25,7 +26,9 @@ export default function App() {
         </h1>
 
         {/* Action buttons */}
+
         <div className="flex items-center gap-3">
+          <DailyStreakButton />
           <a
             href="https://www.alchemy.com/faucets/base-sepolia"
             target="_blank"
