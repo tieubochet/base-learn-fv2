@@ -156,7 +156,7 @@ export default function ContractDeployer() {
   };
 
   return (
-    <div className="w-full max-w-6xl">
+    <div className="w-full max-w-8xl">
       {/* Button check owners */}
       <OwnerChecker
         contractsList={contractsList}
