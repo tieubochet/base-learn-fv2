@@ -11,6 +11,7 @@ import {
   RainbowKitProvider,
 } from "@rainbow-me/rainbowkit";
 import { WagmiConfig, createConfig } from "wagmi";
+import { base } from "wagmi/chains";
 import { baseSepolia } from "wagmi/chains";
 import { http } from "viem";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -26,7 +27,7 @@ const { connectors } = getDefaultWallets({
 const config = createConfig({
   autoConnect: true,
   connectors,
-  chains: [baseSepolia],
+  chains: [baseSepolia, base],
   transports: {
     [baseSepolia.id]: http("https://sepolia.base.org"),
   },
