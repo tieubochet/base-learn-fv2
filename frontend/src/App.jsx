@@ -34,25 +34,6 @@ export default function App() {
           >
             ⛽️ Faucet
           </a>
-
-          <a
-            href="https://twitter.com/solotop999"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={btnClass}
-          >
-            🐦 Follow Me
-          </a>
-
-          <a
-            href="https://github.com/solotop999/Base-Learn"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={btnClass}
-          >
-            ⭐ Source Code
-          </a>
-
           <ConnectButton />
         </div>
       </div>
