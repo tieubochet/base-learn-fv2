@@ -13,17 +13,18 @@ import AddressBookFactory from "../contracts/10_AddressBookFactory.json";
 import UnburnableToken from "../contracts/UnburnableToken.json";
 import WeightedVoting from "../contracts/WeightedVoting.json";
 import HaikuNFT from "../contracts/HaikuNFT.json";
-import DailyStreakABI from './DailyStreak.json'
+import DailyStreakABI from './DailyStreak.json'; // Tên import đã chính xác
 
 
 export const contracts = {
   dailyStreak: {
-    abi: [DailyStreakABI],
-    // 'address' PHẢI LÀ MỘT ĐỐI TƯỢNG (OBJECT)
-    // với các key là chainId (dưới dạng số hoặc chuỗi đều được)
+    // SỬA LỖI: Truy cập vào thuộc tính .abi của object được import
+    abi: DailyStreakABI.abi,
+    
+    // Cấu trúc địa chỉ đã đúng
     address: {
-      8453: '0x899bffa2af4504eec57b8c8f12d8150c4d792830',   // <-- THAY ĐỊA CHỈ MAINNET
-      84532: '', // <-- THAY ĐỊA CHỈ SEPOLIA
+      8453: '0x899bffa2af4504eec57b8c8f12d8150c4d792830', // Base Mainnet
+      84532: '', // Base Sepolia (bạn có thể thêm địa chỉ sau)
     },
   },
 };
