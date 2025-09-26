@@ -1,3 +1,5 @@
+// frontend/src/contracts/contractsList.js
+
 import BasicMath from "../contracts/BasicMath.json";
 import ControlStructures from "../contracts/ControlStructures.json";
 import EmployeeStorage from "../contracts/EmployeeStorage.json";
@@ -13,23 +15,28 @@ import AddressBookFactory from "../contracts/10_AddressBookFactory.json";
 import UnburnableToken from "../contracts/UnburnableToken.json";
 import WeightedVoting from "../contracts/WeightedVoting.json";
 import HaikuNFT from "../contracts/HaikuNFT.json";
-import DailyStreakABI from './DailyStreak.json'; // Tên import đã chính xác
+
+// =========================================================================
+// === SỬA LỖI Ở ĐÂY: Sửa lại đường dẫn import cho đúng ===
+// Đường dẫn phải là '../contracts/' giống như các file khác
+import DailyStreakABI from '../contracts/DailyStreak.json';
+// =========================================================================
 
 
 export const contracts = {
   dailyStreak: {
-    // SỬA LỖI: Truy cập vào thuộc tính .abi của object được import
+    // Bây giờ DailyStreakABI.abi sẽ được đọc chính xác
     abi: DailyStreakABI.abi,
     
-    // Cấu trúc địa chỉ đã đúng
     address: {
       8453: '0x899bffa2af4504eec57b8c8f12d8150c4d792830', // Base Mainnet
-      84532: '', // Base Sepolia (bạn có thể thêm địa chỉ sau)
+      84532: '', // Base Sepolia
     },
   },
 };
 
-// ✅ Danh sách phê duyệt cho FavoriteRecords
+// ... (phần còn lại của file giữ nguyên) ...
+
 const approvedRecords = [
   "Thriller",
   "Back in Black",
