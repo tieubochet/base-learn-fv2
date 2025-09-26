@@ -75,7 +75,10 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-
+button.w-full.bg-gradient-to-r{
+  padding: 10px;
+  border-radius: 10px;
+}
 button:hover {
   border-color: #646cff;
 }
